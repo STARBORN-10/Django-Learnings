@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Search Store</button>
+</form>
+
+{% if stores is not None %}
+    {% if stores %}
+        <h2>Stores available</h2>
+        <ul>
+            {% for store in stores %}
+                <li>{{ store.name }} - {{ store.location }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No stores found for this chai variety.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
